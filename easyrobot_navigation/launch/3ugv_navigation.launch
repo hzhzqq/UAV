@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="map_file" default="$(find easyrobot_navigation)/maps/map.yaml"/>
+    <!-- move_base -->
+    <group ns="ugv1">
+    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+        <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
+
+        <rosparam file="$(find easyrobot_navigation)/config/motion_coordination/ugv1/costmap_common_params.yaml" command="load" ns="global_costmap" />
+        <rosparam file="$(find easyrobot_navigation)/config/motion_coordination/ugv1/costmap_common_params.yaml" command="load" ns="local_costmap" />
+        <rosparam file="$(find easyrobot_navigation)/config/motion_coordination/ugv1/local_costmap_params.yaml" command="load" />
+        <rosparam file="$(find easyrobot_navigation)/config/motion_coordination/ugv1/global_costmap_params.yaml" command="load" />
+        <rosparam file="$(find easyrobot_navigation)/config/motion_coordination/ugv1/move_base_params.yaml" command="load" />
+        <rosparam file="$(find easyrobot_navigation)/config/motion_coordination/ugv1/dwa_local_planner_params.yaml" command="load" />
+
+        <remap from="cmd_vel" to="/ugv1/cmd_vel"/>
+        <remap from="odom" to="/ugv1/odom"/>
+        <remap from="map" to="/map"/>
+    </node>
+    </group>
+
+    <!-- move_base -->
+    <group ns="ugv2">
+    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+        <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
+
+        <rosparam file="$(find easyrobot_navigation)/config/motion_coordination/ugv2/costmap_common_params.yaml" command="load" ns="global_costmap" />
+        <rosparam file="$(find easyrobot_navigation)/config/motion_coordination/ugv2/costmap_common_params.yaml" command="load" ns="local_costmap" />
+        <rosparam file="$(find easyrobot_navigation)/config/motion_coordination/ugv2/local_costmap_params.yaml" command="load" />
+        <rosparam file="$(find easyrobot_navigation)/config/motion_coordination/ugv2/global_costmap_params.yaml" command="load" />
+        <rosparam file="$(find easyrobot_navigation)/config/motion_coordination/ugv2/move_base_params.yaml" command="load" />
+        <rosparam file="$(find easyrobot_navigation)/config/motion_coordination/ugv2/dwa_local_planner_params.yaml" command="load" />
+
+        <remap from="cmd_vel" to="/ugv2/cmd_vel"/>
+        <remap from="odom" to="/ugv2/odom"/>
+        <remap from="map" to="/map"/>
+    </node>
+    </group>
+
+    <!-- move_base -->
+    <group ns="ugv3">
+    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+        <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
+
+        <rosparam file="$(find easyrobot_navigation)/config/motion_coordination/ugv3/costmap_common_params.yaml" command="load" ns="global_costmap" />
+        <rosparam file="$(find easyrobot_navigation)/config/motion_coordination/ugv3/costmap_common_params.yaml" command="load" ns="local_costmap" />
+        <rosparam file="$(find easyrobot_navigation)/config/motion_coordination/ugv3/local_costmap_params.yaml" command="load" />
+        <rosparam file="$(find easyrobot_navigation)/config/motion_coordination/ugv3/global_costmap_params.yaml" command="load" />
+        <rosparam file="$(find easyrobot_navigation)/config/motion_coordination/ugv3/move_base_params.yaml" command="load" />
+        <rosparam file="$(find easyrobot_navigation)/config/motion_coordination/ugv3/dwa_local_planner_params.yaml" command="load" />
+
+        <remap from="cmd_vel" to="/ugv3/cmd_vel"/>
+        <remap from="odom" to="/ugv3/odom"/>
+        <remap from="map" to="/map"/>
+    </node>
+    </group>
+
+    <node pkg="tf" type="static_transform_publisher" name="map_odom_broadcaster" args="0 0 0 0 0 0 /map /odom 10" />
+    <node pkg="tf" type="static_transform_publisher" name="ugv1_laser_broadcaster" args="0 0 0.47 0 0 0 /base_link_1 /laser_1 10" />
+    <node pkg="tf" type="static_transform_publisher" name="ugv2_laser_broadcaster" args="0 0 0.47 0 0 0 /base_link_2 /laser_2 10" />
+    <node pkg="tf" type="static_transform_publisher" name="ugv3_laser_broadcaster" args="0 0 0.47 0 0 0 /base_link_3 /laser_3 10" />
+
+    <!-- Map server -->
+    <node pkg="map_server" type="map_server" name="map_server" args="$(arg map_file)"/>
+
+</launch>
