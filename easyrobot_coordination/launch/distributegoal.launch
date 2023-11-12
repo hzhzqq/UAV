@@ -1,0 +1,6 @@
+<launch>
+    <node pkg="easyrobot_coordination" type="distributegoal" name="distributegoal" output="screen">
+        <param name="around_radius" value="0.5"/> <!-- 目标半径范围-->
+        <param name="sim" value="true"/>
+    </node>
+</launch>
