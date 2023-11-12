@@ -1,0 +1,8 @@
+<launch> 
+
+    <include file="$(find ros_navigation)/launch/nav_px4.launch">
+        </include>
+
+    <include file="$(find px4_control)/launch/px4_control.launch">
+    </include>
+</launch> 
