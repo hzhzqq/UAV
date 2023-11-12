@@ -1,0 +1,15 @@
+<launch>
+
+    <node pkg="easyrobot_bringup" type="easyrobot_bringup" name="easyrobot_bringup" output="screen">
+        <param name="mainloop_frequency"          type="int"    value="50"/>
+        <param name="namespace_enabled"           type="bool"   value="false"/>
+        <param name="ns"                          type="string" value="/uav1"/>
+        <param name="external_location"           type="bool"   value="false"/>
+        <param name="location_source"             type="int"    value="0"/>
+        <param name="battery_quantity"            type="int"    value="3"/>
+        <param name="robot_type"                  type="string" value="UAV"/>
+        <param name="single_battery_low_voltage"  type="double"  value="3.7"/>
+        <param name="single_battery_high_voltage" type="double"  value="4.2"/>
+    </node>
+
+</launch>
