@@ -1,0 +1,25 @@
+<launch>
+
+	<!-- 加载YAML参数文件 -->
+	<rosparam file="$(find easyrobot_ctrl3)/launch/parameters.yaml" command="load" />
+
+	<!-- 启动您的节点 -->
+	<node name="easyrobot_ctrl3_1" pkg="easyrobot_ctrl3" type="easyrobot_ctrl3_node" output="screen" >
+        <!-- <param name="mode"          type="string"    value="position"/>
+        <param name="action"        type="string"    value="1"/> -->
+    </node>
+
+    <!-- <node pkg="easyrobot_bringup" type="easyrobot_bringup" name="easyrobot_bringup" output="screen">
+        <param name="mainloop_frequency"          type="int"    value="50"/>
+        <param name="namespace_enabled"           type="bool"   value="false"/>
+        <param name="ns"                          type="string" value="/uav1"/>
+        <param name="external_location"           type="bool"   value="false"/>
+        <param name="location_source"             type="int"    value="0"/>
+        <param name="battery_quantity"            type="int"    value="4"/>
+        <param name="robot_type"                  type="string" value="UAV"/>
+        <param name="single_battery_low_voltage"  type="double"  value="3.7"/>
+        <param name="single_battery_high_voltage" type="double"  value="4.2"/> -->
+
+
+</launch>
+

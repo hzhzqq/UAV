@@ -1,0 +1,23 @@
+
+rate: 100.0
+use_pid: true
+
+mode: position
+# 可选 position velocity
+action: precise_land
+# 可选：circle_pass  precise_land
+
+
+#if use_pid is set, PID values should be configured -->
+linvel_p_gain: 0.4       #- Proportional gain for linear velocity -->
+linvel_i_gain: 0.05      #-- Integral gain for linear velocity -->
+linvel_d_gain: 0.12      #-- Derivative gain for linear velocity -->
+linvel_i_max: 0.1        # Max integral windup for linear velocity -->
+linvel_i_min: -0.1       #- Min integral windup for linear velocity -->
+
+yawrate_p_gain: 0.011      #<!-- Proportional gain for yaw rate -->
+yawrate_i_gain: 0.00058     #  <!-- Integral gain for yaw rate -->
+yawrate_d_gain: 0.12     #!-- Derivative gain for yaw rate -->
+yawrate_i_max: 0.005      #!-- Max integral windup for yaw rate -->
+yawrate_i_min: -0.005       #<!-- Min integral windup for yaw rate -->
+
