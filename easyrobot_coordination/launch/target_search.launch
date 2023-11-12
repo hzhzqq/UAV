@@ -1,0 +1,23 @@
+<launch>
+    <arg name="launch_prefix" default="" /> <!-- set to value="gdbserver localhost:10000" for remote debugging -->
+    <arg name="node_namespace" default="apriltag_ros_continuous_node" />
+    <!-- Set parameters -->
+    <rosparam command="load" file="$(find apriltag_ros)/config/settings.yaml" ns="$(arg node_namespace)" />
+    <rosparam command="load" file="$(find apriltag_ros)/config/tags.yaml" ns="$(arg node_namespace)" />
+    <node pkg="apriltag_ros" type="apriltag_ros_continuous_node" name="$(arg node_namespace)" clear_params="true" output="screen" launch-prefix="$(arg launch_prefix)" >
+    <!--  Remap topics from those used in code to those on the ROS network -->
+    <remap from="image_rect" to="camera/rgb/image_raw" />
+    <remap from="camera_info" to="camera/rgb/camera_info" />
+    <param name="publish_tag_detections_image" type="bool" value="true" />      <!-- default: false -->
+    </node>
+    
+    <!--加载二维码搜寻程序-->
+    <node pkg="easyrobot_coordination" type="target_search" name="target_search" output="screen">
+    <param name="map_length" value="12"/>  <!--地图长 单位m-->
+    <param name="map_width" value="12"/>  <!--地图宽 单位m-->
+    <param name="DFOV" value="90"/>  <!--相机水平视场角 单位度-->
+    <param name="height" value="2"/>  <!--飞行高度 单位m-->
+    <param name="sim" value="true"/>  <!--是否仿真-->
+    </node>
+    
+</launch>
